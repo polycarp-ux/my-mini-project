@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Venue Finder</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Venue-selection.css">
+    <link rel="icon" href="poly logo.png" type="image/png">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="Index.html" class="logo">
+                <img src="poly logo.png" alt="Logo" class="logo-img">
+                <span class="brand-name">PolyPlanner</span>
+            </a>
+            <div class="nav-links">
+                <a href="Getstarted.html">Home</a>
+                <a href="Task-management.html">Task-Management</a>
+                <a href="guest-management.html">Guest-Management</a>
+                <a href="budget.html">Budget-Tracking</a>
+            </div>
+        </div>
+    </nav>
+
+    <style>
+        .hidden { display: none !important; }
+        .venue-description {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 1em;
+        }
+        .venue-amenities h6, .venue-features h6 {
+            font-weight: 600;
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+        }
+        .venue-amenities ul {
+            list-style: none;
+            padding-left: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .venue-amenities li {
+            background-color: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            color: #333;
+        }
+    </style>
+
+    <div class="hero">
+        <div class="container">
+            <h2>Find Your Perfect Event Venue</h2>
+            <div class="search-box">
+                <input type="text" placeholder="Search by venue name, location..." id="searchInput">
+                <button id="searchButton"><i class="fas fa-search"></i> Search</button>
+            </div>
+            <div class="quick-filters">
+                <button class="active" data-filter="all">All Venues</button>
+                <button data-filter="hotel">Hotels</button>
+                <button data-filter="conference-center">Conference Centers</button>
+                <button data-filter="guest-house">Guest House</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container main-content">
+        <div class="map-sidebar">
+            <div id="map"></div>
+            <div class="map-controls">
+                <button id="locate-me"><i class="fas fa-location-arrow"></i> Find Me</button>
+                <div class="map-legend">
+                    <span><i class="fas fa-hotel"></i> Hotel</span>
+                    <span><i class="fas fa-umbrella-beach"></i> Outdoor</span>
+                    <span><i class="fas fa-building"></i> Conference</span>
+                </div>
+            </div>
+        </div>
+        <div class="venues-grid" id="venues-grid">
+            <div class="venue-card" data-id="1" data-category="hotel" data-lat="6.7128" data-lng="-1.6060">
+                <div class="venue-image">
+                    <img src="anita hotel.jpg" alt="anita hotel">
+                    <div class="venue-price">From GHC 2,500</div>
+                </div>
+                <div class="venue-info">
+                    <h3>Anita Hotel</h3>
+                    <div class="venue-location">
+                        <i class="fas fa-map-marker-alt"></i> Kumasi, Ghana
+                    </div>
+                    <p class="venue-description">A luxurious hotel venue known for its elegant event spaces and exceptional service. Perfect for large weddings and corporate gatherings.</p>
+                    <div class="venue-features" data-amenities="Catering,Parking,WiFi,Conference Room">
+                        <i class="fas fa-utensils"></i> Catering
+                        <i class="fas fa-car"></i> Parking
+                        <i class="fas fa-wifi"></i> WiFi
+                        <i class="fas fa-briefcase"></i> Conference Room
+                    </div>
+                    <div class="venue-capacity">
+                        <i class="fas fa-users"></i> Max 500 guests
+                    </div>
+                    <button class="book-btn" data-venue-type="Hotel" data-venue-name="Anita Hotel">View & Book</button>
+                </div>
+            </div>
+
+            <div class="venue-card" data-id="2" data-category="hotel" data-lat="6.7000" data-lng="-1.6100">
+                <div class="venue-image">
+                    <img src="Okumah hotel.jpg" alt="Okumah Hotel">
+                    <div class="venue-price">From GHC 800</div>
+                </div>
+                <div class="venue-info">
+                    <h3>Okumah Hotel</h3>
+                    <div class="venue-location">
+                        <i class="fas fa-map-marker-alt"></i> Kumasi, Ghana
+                    </div>
+                    <p class="venue-description">A cozy and intimate hotel venue with a beautiful poolside area, ideal for small parties, birthday celebrations, and family gatherings.</p>
+                    <div class="venue-features" data-amenities="Catering,Pool,WiFi,Bar">
+                        <i class="fas fa-utensils"></i> Catering
+                        <i class="fas fa-swimming-pool"></i> Pool
+                        <i class="fas fa-wifi"></i> WiFi
+                        <i class="fas fa-cocktail"></i> Bar
+                    </div>
+                    <div class="venue-capacity">
+                        <i class="fas fa-users"></i> Max 50 guests
+                    </div>
+                    <button class="book-btn" data-venue-type="Hotel" data-venue-name="Okumah Hotel">View & Book</button>
+                </div>
+            </div>
+            
+            <div class="venue-card" data-id="3" data-category="hotel" data-lat="5.6037" data-lng="-0.1870">
+                <div class="venue-image">
+                    <img src="Alisa hotel.jpg" alt="Alisa Hotel">
+                    <div class="venue-price">From GHC 5,000</div>
+                </div>
+                <div class="venue-info">
+                    <h3>Alisa Hotel</h3>
+                    <div class="venue-location">
+                        <i class="fas fa-map-marker-alt"></i> Accra Central, Ghana
+                    </div>
+                    <p class="venue-description">A premier event destination in Accra, offering a range of modern spaces and state-of-the-art facilities for high-profile events and conferences.</p>
+                    <div class="venue-features" data-amenities="Catering,Parking,WiFi,AV Equipment,Large Hall">
+                        <i class="fas fa-utensils"></i> Catering
+                        <i class="fas fa-car"></i> Parking
+                        <i class="fas fa-wifi"></i> WiFi
+                        <i class="fas fa-tv"></i> AV Equipment
+                        <i class="fas fa-door-open"></i> Large Hall
+                    </div>
+                    <div class="venue-capacity">
+                        <i class="fas fa-users"></i> Max 2000 guests
+                    </div>
+                    <button class="book-btn" data-venue-type="Hotel" data-venue-name="Alisa Hotel">View & Book</button>
+                </div>
+            </div>
+
+            <div class="venue-card" data-id="4" data-category="hotel" data-lat="5.5976" data-lng="-0.1852">
+                <div class="venue-image">
+                    <img src="Lancaster hotel.jpg" alt="Lancaster Hotel">
+                    <div class="venue-price">From GHC 1,500</div>
+                </div>
+                <div class="venue-info">
+                    <h3>Lancaster Hotel</h3>
+                    <div class="venue-location">
+                        <i class="fas fa-map-marker-alt"></i> Accra, Ghana
+                    </div>
+                    <p class="venue-description">Known for its beautiful outdoor gardens and terraces, this hotel is ideal for weddings, receptions, and events that require a scenic backdrop.</p>
+                    <div class="venue-features" data-amenities="Catering,Outdoor Space,Photo Spots,Parking">
+                        <i class="fas fa-utensils"></i> Catering
+                        <i class="fas fa-tree"></i> Outdoor Space
+                        <i class="fas fa-camera"></i> Photo Spots
+                        <i class="fas fa-car"></i> Parking
+                    </div>
+                    <div class="venue-capacity">
+                        <i class="fas fa-users"></i> Max 300 guests
+                    </div>
+                    <button class="book-btn" data-venue-type="Hotel" data-venue-name="Lancaster Hotel">View & Book</button>
+                </div>
+            </div>
+
+            <div class="venue-card" data-id="5" data-category="hotel" data-lat="5.1000" data-lng="-1.2500">
+                <div class="venue-image">
+                    <img src="BH hotel cc..jpg" alt="BH Hotel">
+                    <div class="venue-price">From GHC 2,000</div>
+                </div>
+                <div class="venue-info">
+                    <h3>BH Hotel</h3>
+                    <div class="venue-location">
+                        <i class="fas fa-map-marker-alt"></i> Cape Coast, Ghana
+                    </div>
+                    <p class="venue-description">A stunning waterfront hotel with breathtaking views of the ocean, perfect for memorable events and intimate celebrations.</p>
+                    <div class="venue-features" data-amenities="Catering,Parking,WiFi,Waterfront">
+                        <i class="fas fa-utensils"></i> Catering
+                        <i class="fas fa-car"></i> Parking
+                        <i class="fas fa-wifi"></i> WiFi
+                        <i class="fas fa-water"></i> Waterfront
+                    </div>
+                    <div class="venue-capacity">
+                        <i class="fas fa-users"></i> Max 400 guests
+                    </div>
+                    <button class="book-btn" data-venue-type="Hotel" data-venue-name="BH Hotel">View & Book</button>
+                </div>
+            </div>
+
+            <div class="venue-card" data-id="6" data-category="hotel" data-lat="5.5539" data-lng="-0.2038">
+                <div class="venue-image">
+                    <img src="Kempinski hotel.jpg" alt="Kempinski Hotel">
+                    <div class="venue-price">From GHC 1,200</div>
+                </div>
+                <div class="venue-info">
+                    <h3>Kempinski Hotel</h3>
+                    <div class="venue-location">
+                        <i class="fas fa-map-marker-alt"></i> Accra Central, Ghana
+                    </div>
+                    <p class="venue-description">A world-class hotel offering luxurious event spaces and bespoke services for the most exclusive and artistic events.</p>
+                    <div class="venue-features" data-amenities="Catering,Valet,Artistic Space,WiFi">
+                        <i class="fas fa-utensils"></i> Catering
+                        <i class="fas fa-parking"></i> Valet
+                        <i class="fas fa-paint-brush"></i> Artistic Space
+                        <i class="fas fa-wifi"></i> WiFi
+                    </div>
+                    <div class="venue-capacity">
+                        <i class="fas fa-users"></i> Max 150 guests
+                    </div>
+                    <button class="book-btn" data-venue-type="Hotel" data-venue-name="Kempinski Hotel">View & Book</button>
+                </div>
+            </div>
+
+            <div class="venue-card" data-id="7" data-category="guest-house" data-lat="6.7000" data-lng="-1.6000">
+                <div class="venue-image">
+                    <img src="Owuraku guest house.jpg" alt="Owuraku Guest House">
+                    <div class="venue-price">From GHC 3,000</div>
+                </div>
+                <div class="venue-info">
+                    <h3>Owuraku Guest House</h3>
+                    <div class="venue-location">
+                        <i class="fas fa-map-marker-alt"></i> Kumasi, Ayeduase Road
+                    </div>
+                    <p class="venue-description">A quiet and comfortable guest house with a homely atmosphere, perfect for small, private gatherings or overnight stays for a small group.</p>
+                    <div class="venue-features" data-amenities="Parking,Kitchen Access,Private Rooms">
+                        <i class="fas fa-car"></i> Parking
+                        <i class="fas fa-kitchen-set"></i> Kitchen Access
+                        <i class="fas fa-bed"></i> Private Rooms
+                    </div>
+                    <div class="venue-capacity">
+                        <i class="fas fa-users"></i> Max 5 guests
+                    </div>
+                    <button class="book-btn" data-venue-type="Guest House" data-venue-name="Owuraku Guest House">View & Book</button>
+                </div>
+            </div>
+
+            <div class="venue-card" data-id="8" data-category="conference-center" data-lat="6.6800" data-lng="-1.6010">
+                <div class="venue-image">
+                    <img src="international conference center.jpg" alt="Kumasi International Conference Center">
+                    <div class="venue-price">From GHC 4,000</div>
+                </div>
+                <div class="venue-info">
+                    <h3>Kumasi International Conference Center</h3>
+                    <div class="venue-location">
+                        <i class="fas fa-map-marker-alt"></i> Ejisu, Besease
+                    </div>
+                    <p class="venue-description">A premier conference facility equipped with multiple halls and advanced technology to host large-scale conferences, exhibitions, and seminars.</p>
+                    <div class="venue-features" data-amenities="Catering,Parking,WiFi,AV Equipment,Multiple Halls">
+                        <i class="fas fa-utensils"></i> Catering
+                        <i class="fas fa-car"></i> Parking
+                        <i class="fas fa-wifi"></i> WiFi
+                        <i class="fas fa-tv"></i> AV Equipment
+                        <i class="fas fa-building"></i> Multiple Halls
+                    </div>
+                    <div class="venue-capacity">
+                        <i class="fas fa-users"></i> Max 800 guests
+                    </div>
+                    <button class="book-btn" data-venue-type="Conference Center" data-venue-name="Kumasi International Conference Center">View & Book</button>
+                </div>
+            </div>
+
+            <div class="venue-card" data-id="9" data-category="conference-center" data-lat="6.6710" data-lng="-1.5690">
+                <div class="venue-image">
+                    <img src="IDL conf. center.jpg" alt="IDL Conference Center">
+                    <div class="venue-price">From GHC 1,500</div>
+                </div>
+                <div class="venue-info">
+                    <h3>IDL Conference Center</h3>
+                    <div class="venue-location">
+                        <i class="fas fa-map-marker-alt"></i> Kumasi, Oforikrom (KNUST)
+                    </div>
+                    <p class="venue-description">Situated on the KNUST campus, this center provides a modern and accessible space for academic conferences, workshops, and student events.</p>
+                    <div class="venue-features" data-amenities="Parking,WiFi,Auditorium,Classrooms">
+                        <i class="fas fa-car"></i> Parking
+                        <i class="fas fa-wifi"></i> WiFi
+                        <i class="fas fa-chair"></i> Auditorium
+                        <i class="fas fa-chalkboard-user"></i> Classrooms
+                    </div>
+                    <div class="venue-capacity">
+                        <i class="fas fa-users"></i> Max 700 guests
+                    </div>
+                    <button class="book-btn" data-venue-type="Conference Center" data-venue-name="IDL Conference Center">View & Book</button>
+                </div>
+            </div>
+
+            <div class="venue-card" data-id="10" data-category="guest-house" data-lat="6.6690" data-lng="-1.5790">
+                <div class="venue-image">
+                    <img src="K5 guest house.jpg" alt="K5 Guest House">
+                    <div class="venue-price">From GHC 300</div>
+                </div>
+                <div class="venue-info">
+                    <h3>K5 Guest House</h3>
+                    <div class="venue-location">
+                        <i class="fas fa-map-marker-alt"></i> Kumasi, Ayeduase New site
+                    </div>
+                    <p class="venue-description">A budget-friendly guest house offering basic amenities and a quiet environment, perfect for small groups or individual travelers.</p>
+                    <div class="venue-features" data-amenities="Parking,WiFi,Private Rooms,On-site Staff">
+                        <i class="fas fa-car"></i> Parking
+                        <i class="fas fa-wifi"></i> WiFi
+                        <i class="fas fa-bed"></i> Private Rooms
+                        <i class="fas fa-user-circle"></i> On-site Staff
+                    </div>
+                    <div class="venue-capacity">
+                        <i class="fas fa-users"></i> Max 10 guests
+                    </div>
+                    <button class="book-btn" data-venue-type="Guest House" data-venue-name="K5 Guest House">View & Book</button>
+                </div>
+            </div>
+            </div>
+    </div>
+
+    <div class="modal" id="venue-modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="modal-header">
+                <h2 id="venue-modal-title">Venue Name</h2>
+                <div class="venue-modal-location">
+                    <i class="fas fa-map-marker-alt"></i> <span id="venue-modal-address">Address</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="venue-gallery" id="venue-gallery">
+                    </div>
+                <div class="venue-details">
+                    <div class="details-section">
+                        <h3>About This Venue</h3>
+                        <p id="venue-modal-description">Description will load here...</p>
+                    </div>
+                    <div class="details-section">
+                        <h3>Features & Amenities</h3>
+                        <div class="features-grid" id="venue-modal-amenities">
+                            </div>
+                    </div>
+                    <div class="details-section">
+                        <h3>Booking Information</h3>
+                        <form id="bookingForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="event-name">Event Name</label>
+                                    <input type="text" id="event-name" name="eventName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="event-date">Event Date</label>
+                                    <input type="date" id="event-date" name="eventDate" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="guest-count">Number of Guests</label>
+                                    <input type="number" id="guest-count" name="numberOfGuests" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="event-type">Event Type</label>
+                                    <select id="event-type" name="eventType" required>
+                                        <option value="">Select...</option>
+                                        <option value="Wedding">Wedding</option>
+                                        <option value="Corporate Event">Corporate Event</option>
+                                        <option value="Birthday Party">Birthday Party</option>
+                                        <option value="Conference">Conference</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-name">Your Name</label>
+                                <input type="text" id="contact-name" name="yourName" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contact-email">Email</label>
+                                    <input type="email" id="contact-email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact-phone">Phone</label>
+                                    <input type="tel" id="contact-phone" name="phone" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="special-requests">Special Requests</label>
+                                <textarea id="special-requests" name="specialRequests" rows="4"></textarea>
+                            </div>
+                            <input type="hidden" id="venueTypeHidden" name="venueType">
+                            <input type="hidden" id="venueNameHidden" name="venueName">
+                            <button type="submit" class="submit-btn">Submit Booking Request</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        const venueModal = document.getElementById('venue-modal');
+        const closeBtn = document.querySelector('.close-btn');
+
+        function initMap() {
+            const map = L.map('map').setView([6.6738, -1.6190], 12); // Approximate coordinates for Kumasi
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            const venueCards = document.querySelectorAll('.venue-card');
+
+            venueCards.forEach(card => {
+                const lat = parseFloat(card.dataset.lat);
+                const lng = parseFloat(card.dataset.lng);
+                const venueName = card.querySelector('h3').textContent;
+                const venueAddress = card.querySelector('.venue-location').textContent.replace('📍', '').trim();
+                const venueDescription = card.querySelector('.venue-description').textContent;
+                const venueImage = card.querySelector('.venue-image img').getAttribute('src');
+                const venueAmenitiesText = card.querySelector('.venue-features').dataset.amenities;
+                const venueAmenities = venueAmenitiesText ? venueAmenitiesText.split(',') : [];
+
+                const marker = L.marker([lat, lng]).addTo(map)
+                    .bindPopup(`
+                        <div class="map-popup">
+                            <h3>${venueName}</h3>
+                            <p>${venueAddress}</p>
+                            <button onclick="openVenueModal('${card.dataset.id}')" class="map-view-btn">View Details</button>
+                        </div>
+                    `);
+
+                marker.on('click', function() {
+                    map.setView([lat, lng], 15);
+                    highlightVenueCard(card.dataset.id);
+                });
+
+                card.addEventListener('click', function() {
+                    map.setView([lat, lng], 15);
+                    highlightVenueCard(card.dataset.id);
+                });
+            });
+
+            document.getElementById('locate-me').addEventListener('click', function() {
+                map.locate({setView: true, maxZoom: 14});
+            });
+
+            map.on('locationfound', function(e) {
+                L.marker([e.latitude, e.longitude]).addTo(map)
+                    .bindPopup("You are here").openPopup();
+            });
+
+            map.on('locationerror', function(e) {
+                alert("Location access denied. Using default location.");
+            });
+        }
+
+        function highlightVenueCard(venueId) {
+            document.querySelectorAll('.venue-card').forEach(card => {
+                card.style.boxShadow = card.dataset.id === venueId ?
+                    '0 0 0 3px rgba(110, 72, 170, 0.5)' :
+                    '0 2px 10px rgba(0, 0, 0, 0.1)';
+            });
+        }
+
+        function openVenueModal(venueId) {
+            const selectedVenueCard = document.querySelector(`.venue-card[data-id="${venueId}"]`);
+            if (selectedVenueCard) {
+                const venueName = selectedVenueCard.querySelector('h3').textContent;
+                const venueAddress = selectedVenueCard.querySelector('.venue-location').textContent.replace('📍', '').trim();
+                const venueDescription = selectedVenueCard.querySelector('.venue-description').textContent;
+                const venueImage = selectedVenueCard.querySelector('.venue-image img').getAttribute('src');
+                const venueType = selectedVenueCard.dataset.category;
+                const venueAmenitiesText = selectedVenueCard.querySelector('.venue-features').dataset.amenities;
+                const venueAmenities = venueAmenitiesText ? venueAmenitiesText.split(',') : [];
+
+                // Populate modal content
+                document.getElementById('venue-modal-title').textContent = venueName;
+                document.getElementById('venue-modal-address').textContent = venueAddress;
+                document.getElementById('venue-modal-description').textContent = venueDescription;
+                
+                // Populate image
+                const galleryDiv = document.getElementById('venue-gallery');
+                galleryDiv.innerHTML = `<img src="${venueImage}" alt="${venueName}" style="width:100%; border-radius: 8px;">`;
+
+                // Populate amenities
+                const amenitiesDiv = document.getElementById('venue-modal-amenities');
+                amenitiesDiv.innerHTML = venueAmenities.map(amenity => `<span class="badge bg-secondary">${amenity}</span>`).join('');
+                
+                // Update hidden form fields
+                document.getElementById('venueTypeHidden').value = venueType;
+                document.getElementById('venueNameHidden').value = venueName;
+
+                venueModal.style.display = 'block';
+            }
+        }
+        
+        // --- Event Listeners and Form Submission ---
+        document.addEventListener("DOMContentLoaded", function() {
+            initMap();
+
+            const filterButtons = document.querySelectorAll(".quick-filters button");
+            const venueCards = document.querySelectorAll(".venue-card");
+
+            filterButtons.forEach(button => {
+                button.addEventListener("click", () => {
+                    filterButtons.forEach(btn => btn.classList.remove("active"));
+                    button.classList.add("active");
+                    const filter = button.dataset.filter;
+                    venueCards.forEach(card => {
+                        const category = card.dataset.category;
+                        if (filter === "all" || category === filter) {
+                            card.classList.remove("hidden");
+                        } else {
+                            card.classList.add("hidden");
+                        }
+                    });
+                });
+            });
+
+            document.querySelectorAll('.book-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const venueCard = this.closest('.venue-card');
+                    openVenueModal(venueCard.dataset.id);
+                });
+            });
+
+            closeBtn.addEventListener('click', () => {
+                venueModal.style.display = 'none';
+            });
+
+            window.addEventListener('click', (event) => {
+                if (event.target == venueModal) {
+                    venueModal.style.display = 'none';
+                }
+            });
+
+            document.getElementById('bookingForm').addEventListener('submit', async function(event) {
+                event.preventDefault();
+                const formData = {
+                    eventName: document.getElementById('event-name').value,
+                    eventDate: document.getElementById('event-date').value,
+                    guestCount: parseInt(document.getElementById('guest-count').value),
+                    eventType: document.getElementById('event-type').value,
+                    contactName: document.getElementById('contact-name').value,
+                    contactEmail: document.getElementById('contact-email').value,
+                    contactPhone: document.getElementById('contact-phone').value,
+                    specialRequests: document.getElementById('special-requests').value,
+                    venueName: document.getElementById('venueNameHidden').value,
+                    venueType: document.getElementById('venueTypeHidden').value
+                };
+                try {
+                    const response = await fetch('http://localhost:3000/api/bookings', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formData)
+                    });
+                    const result = await response.json();
+                    if (response.ok) {
+                        alert('Booking successful! We will contact you shortly.');
+                        document.getElementById('bookingForm').reset();
+                        venueModal.style.display = 'none';
+                    } else {
+                        alert('Booking failed: ' + (result.message || 'An unknown error occurred.'));
+                        console.error('Booking error details from backend:', result);
+                    }
+                } catch (networkError) {
+                    console.error('Network or server connection error:', networkError);
+                    alert('Could not connect to the booking service. Please ensure the backend is running and try again.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyplanner - Task Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Task-management.css">
+    <link rel="icon" href="poly logo.png" type="image/png">
+</head>
+<body>
+    <nav class="navbar">
+    <div class="container">
+        <a href="Index.html" class="logo">
+            <img src="poly logo.png" alt="Logo" class="logo-img">
+            <span class="brand-name">PolyPlanner</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="Getstarted.html">Home</a>
+            <a href="Venue-selection.html">Venue-Selection</a>
+            <a href="guest-management.html">Guest-Management</a>
+            <a href="budget.html">Budget-Tracking</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <section class="task-hero">
+        <div class="task-hero-content">
+            <h1>Task Management</h1>
+            <p class="white-text">Assign, track, and complete all event tasks with our intuitive system. Never miss a deadline again.</p>
+            <button class="btn btn-primary">
+                <i class="fas fa-plus"></i> Create New Task
+            </button>
+        </div>
+    </section>
+
+    <main class="task-container">
+        <section class="task-features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user-friends"></i>
+                </div>
+                <h3>Create and assign tasks to team members</h3>
+                <p>Easily delegate responsibilities to your team with clear assignments and notifications.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <h3>Set deadlines and priorities</h3>
+                <p>Mark tasks as high, medium, or low priority with visual indicators for easy tracking.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Real-time progress tracking</h3>
+                <p>See task completion status across your entire event with live updates.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <h3>Automated reminders</h3>
+                <p>Never miss a deadline with customizable email and in-app notifications.</p>
+            </div>
+        </section>
+
+        <section class="task-board-section">
+            <div class="section-header">
+                <h2>Your Task Board</h2>
+                <div class="board-actions">
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-plus"></i> Add Task
+                    </button>
+                </div>
+            </div>
+
+            <div class="task-board">
+                <div class="task-column">
+                    <div class="column-header">
+                        <h3>To Do</h3>
+                        <span class="task-count">4</span>
+                    </div>
+                    <div class="task-list" id="todo-tasks">
+                        <div class="task-card" draggable="true">
+                            <div class="task-card-header">
+                                <span class="task-priority high">High</span>
+                                <span class="task-date">Due: May 30</span>
+                            </div>
+                            <h4 class="task-title">Finalize venue contract</h4>
+                            <p class="task-desc">Review and sign the contract with Grand Hotel</p>
+                            <div class="task-footer">
+                                <div class="task-assignee">
+                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson">
+                                    <span>You</span>
+                                </div>
+                                <div class="task-actions">
+                                    <button class="task-btn" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="task-btn" title="Complete">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="task-card" draggable="true">
+                            <div class="task-card-header">
+                                <span class="task-priority medium">Medium</span>
+                                <span class="task-date">Due: Jun 2</span>
+                            </div>
+                            <h4 class="task-title">Create event program</h4>
+                            <p class="task-desc">Draft schedule for the conference day</p>
+                            <div class="task-footer">
+                                <div class="task-assignee">
+                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen">
+                                    <span>Michael C.</span>
+                                </div>
+                                <div class="task-actions">
+                                    <button class="task-btn" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="task-btn" title="Complete">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="add-task-btn">
+                        <i class="fas fa-plus"></i> Add Task
+                    </button>
+                </div>
+
+                <div class="task-column">
+                    <div class="column-header">
+                        <h3>In Progress</h3>
+                        <span class="task-count">2</span>
+                    </div>
+                    <div class="task-list" id="progress-tasks">
+                        <div class="task-card" draggable="true">
+                            <div class="task-card-header">
+                                <span class="task-priority high">High</span>
+                                <span class="task-date">Due: May 28</span>
+                            </div>
+                            <h4 class="task-title">Send speaker invitations</h4>
+                            <p class="task-desc">Contact potential speakers for keynote</p>
+                            <div class="task-footer">
+                                <div class="task-assignee">
+                                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emma Rodriguez">
+                                    <span>Emma R.</span>
+                                </div>
+                                <div class="task-actions">
+                                    <button class="task-btn" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="task-btn" title="Complete">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="add-task-btn">
+                        <i class="fas fa-plus"></i> Add Task
+                    </button>
+                </div>
+
+                <div class="task-column">
+                    <div class="column-header">
+                        <h3>Completed</h3>
+                        <span class="task-count">1</span>
+                    </div>
+                    <div class="task-list" id="completed-tasks">
+                        <div class="task-card" draggable="true">
+                            <div class="task-card-header">
+                                <span class="task-priority low">Low</span>
+                                <span class="task-date">Completed: May 25</span>
+                            </div>
+                            <h4 class="task-title">Book catering service</h4>
+                            <p class="task-desc">Confirmed with Gourmet Delights</p>
+                            <div class="task-footer">
+                                <div class="task-assignee">
+                                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Mike Taylor">
+                                    <span>Mike T.</span>
+                                </div>
+                                <div class="task-actions">
+                                    <button class="task-btn" title="Reopen">
+                                        <i class="fas fa-undo"></i>
+                                    </button>
+                                    <button class="task-btn" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="add-task-btn">
+                        <i class="fas fa-plus"></i> Add Task
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="task-analytics">
+            <div class="section-header">
+                <h2>Task Analytics</h2>
+                <div class="time-filter">
+                    <button class="time-btn active">This Week</button>
+                    <button class="time-btn">This Month</button>
+                    <button class="time-btn">All Time</button>
+                </div>
+            </div>
+
+            <div class="analytics-cards">
+                <div class="analytics-card">
+                    <div class="stat-number">78%</div>
+                    <h3>Completion Rate</h3>
+                    <p>of tasks completed on time</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 78%"></div>
+                    </div>
+                </div>
+
+                <div class="analytics-card">
+                    <div class="stat-number">12</div>
+                    <h3>Overdue Tasks</h3>
+                    <p>needing immediate attention</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill negative" style="width: 30%"></div>
+                    </div>
+                </div>
+
+                <div class="analytics-card">
+                    <div class="stat-number">94</div>
+                    <h3>Total Tasks</h3>
+                    <p>across all your events</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 65%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Create New Task</h2>
+            <form id="taskForm">
+                <div class="form-group">
+                    <label for="taskTitle">Task Title</label>
+                    <input type="text" id="taskTitle" placeholder="What needs to be done?" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="taskDescription">Description</label>
+                    <textarea id="taskDescription" rows="3" placeholder="Add details about the task..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="taskDueDate">Due Date</label>
+                        <input type="date" id="taskDueDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="taskPriority">Priority</label>
+                        <select id="taskPriority">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-container">
+                    <h4>Assign To..</h4>
+                    <input type="text" id="taskAssignedTo" placeholder="type here.....">
+                </div>
+
+                <div class="form-group">
+                    <label for="taskCategory">Category</label>
+                    <select id="taskCategory">
+                        <option value="general">General</option>
+                        <option value="venue">Venue</option>
+                        <option value="catering">Catering</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="guest">Guest Management</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" onclick="closeModal()">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Create Task
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="Task-management.js"></script>
+    <script>
+        // You can remove this toggleMenu function if it's not used elsewhere,
+        // as the navbar doesn't seem to have a menu toggle button in this HTML.
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            if (navLinks) { // Add a check to prevent errors if element not found
+                navLinks.classList.toggle('show');
+            }
+        }
+    </script>
+
+</body>
+</html>

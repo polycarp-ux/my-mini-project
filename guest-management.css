@@ -1,0 +1,582 @@
+/* Define CSS Variables (from your original code) */
+:root {
+    --primary-color: #6e48aa; /* Example: A purple color */
+    --secondary-color: #f8f9fa; /* Light grey */
+    --success-color: #4CAF50; /* Green */
+    --danger-color: #F44336; /* Red */
+    --warning-color: #FFC107; /* Amber */
+    --info-color: #2196F3; /* Blue */
+    --text-color: #333;
+    --gray-dark: #555;
+    --gray-medium: #888;
+    --gray-light: #ddd;
+    --light-color: #f0f2f5; /* For buttons or light backgrounds */
+    --transition: all 0.3s ease; /* For smooth transitions */
+}
+
+/* Reset spacing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7fa;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Global Container (for page content) */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ===========================================
+   NAVIGATION BAR STYLES - CORRECTED & INTEGRATED
+   =========================================== */
+.navbar {
+    background-color: var(--primary-color); /* Uses your primary color variable */
+    padding: 15px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky; /* Makes the navbar stick to the top */
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between; /* Distributes items: logo left, links center, profile right */
+    align-items: center;
+    max-width: 1200px; /* Ensure it respects your overall container width */
+    margin: 0 auto; /* Center the content within the navbar */
+    padding: 0 20px; /* Add some padding on sides for smaller screens */
+}
+
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff; /* Logo text color */
+    font-size: 1.5em;
+    font-weight: 600;
+    white-space: nowrap; /* Prevents text from wrapping */
+}
+
+.navbar .logo-img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.navbar .nav-links {
+    display: flex;
+    gap: 30px; /* Space between individual navigation links */
+    flex-grow: 1; /* Allows nav-links to grow and push .user-profile to the right */
+    justify-content: center; /* Centers the links within the available space */
+    margin: 0 20px; /* Add horizontal margin to separate from logo/profile */
+}
+
+.navbar .nav-links a {
+    color: #fff; /* Link color */
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover,
+.navbar .nav-links a.active { /* Added .active class for current page highlight */
+    color: #e0e0e0; /* Lighter color on hover/active */
+}
+
+.navbar .user-profile img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff; /* White border around profile image */
+}
+
+/* ===========================================
+   END NAVIGATION BAR STYLES
+   =========================================== */
+
+/* Buttons (using your variables) */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    background-color: #5a54d4; /* Slightly darker purple on hover */
+}
+
+.btn-secondary {
+    background-color: var(--light-color);
+    color: var(--text-color);
+    border: 1px solid var(--gray-light);
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-secondary:hover {
+    background-color: var(--gray-light);
+}
+
+
+/* Guest Management Styles - Adjusted for full-width sections */
+.guest-management-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Ensures all direct children (sections) take full width */
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.page-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.guest-overview {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    display: grid;
+    grid-template-columns: 1fr; /* Ensure internal elements stack on smaller screens */
+    gap: 1.5rem;
+}
+
+.stats-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.stat-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.25rem;
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.stat-value.attending {
+    color: var(--success-color);
+}
+
+.stat-value.not-attending {
+    color: var(--danger-color);
+}
+
+.stat-value.pending {
+    color: var(--warning-color);
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--gray-dark);
+}
+
+.guest-chart-container {
+    height: 100%;
+    min-height: 250px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.list-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.search-filter {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-filter i {
+    position: absolute;
+    left: 12px;
+    color: var(--gray-medium);
+}
+
+.search-filter input {
+    padding: 0.5rem 1rem 0.5rem 2rem;
+    border: 1px solid var(--gray-light);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    min-width: 250px;
+}
+
+#rsvp-filter {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--gray-light);
+    border-radius: 6px;
+    font-size: 0.875rem;
+}
+
+.guest-table-container {
+    overflow-x: auto;
+    margin-bottom: 1rem;
+}
+
+#guest-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#guest-table th, #guest-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--gray-light);
+}
+
+#guest-table th {
+    background-color: var(--primary-color); /* Using primary color for table header */
+    color: white;
+    font-weight: 500;
+}
+
+#guest-table tr:hover {
+    background-color: rgba(108, 99, 255, 0.05); /* Light hover effect with primary color */
+}
+
+.rsvp-status {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.rsvp-status.pending {
+    background-color: rgba(255, 193, 7, 0.1);
+    color: var(--warning-color);
+}
+
+.rsvp-status.attending {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: var(--success-color);
+}
+
+.rsvp-status.not_attending {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: var(--danger-color);
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    color: var(--gray-medium);
+    cursor: pointer;
+    margin: 0 0.25rem;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.action-btn:hover {
+    color: var(--primary-color);
+}
+
+.action-btn.delete:hover {
+    color: var(--danger-color);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.pagination button {
+    background: var(--light-color);
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.pagination button:hover {
+    background: var(--gray-light);
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.invitation-controls {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr; /* Ensured full width for invitation controls sections */
+    gap: 1.5rem;
+}
+
+.invitation-template {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#template-select {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--gray-light);
+    border-radius: 6px;
+    font-size: 0.875rem;
+}
+
+.invitation-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+#invitation-message {
+    width: 100%;
+    min-height: 150px;
+    padding: 1rem;
+    border: 1px solid var(--gray-light);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    resize: vertical;
+}
+
+.editor-tools {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.editor-btn {
+    padding: 0.25rem 0.75rem;
+    background: var(--light-color);
+    border: 1px solid var(--gray-light);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.editor-btn:hover {
+    background: var(--gray-light);
+}
+
+.invitation-preview-content {
+    background: white;
+    border: 1px solid var(--gray-light);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.preview-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+/* Modal Background */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex; /* Ensures content is centered */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Modal Content */
+.modal-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Close Button */
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    color: #777;
+    cursor: pointer;
+}
+
+/* Header */
+#modal-title {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #5e35b1;
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #7e57c2;
+}
+
+/* Row with Two Inputs */
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+/* Buttons */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Responsive Styles - All sections now stack vertically by default */
+@media (min-width: 992px) {
+    /* No changes needed here anymore, as the default is 1fr for guest-management-container */
+    /* If you later want a side-by-side layout, you would reintroduce grid-template-columns here */
+
+    /* Ensure internal components of guest-overview and invitation-controls still have responsive layout */
+    .guest-overview {
+        grid-template-columns: 1fr 2fr; /* Restore 2-column layout for stats + chart on larger screens */
+    }
+    .invitation-controls {
+        grid-template-columns: 1fr 2fr; /* Restore 2-column layout for template + editor on larger screens */
+    }
+}
+
+@media (max-width: 1024px) {
+    /* Guest overview and invitation controls already stack due to smaller default grid setting */
+}
+
+@media (max-width: 768px) {
+    /* Tablet and Mobile Specific Styles */
+    .navbar .nav-links {
+        display: none; /* Hides navigation links on small screens */
+    }
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .list-actions {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .search-filter input {
+        width: 100%;
+    }
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    .form-row .form-group {
+        margin-bottom: 15px;
+    }
+    .form-actions {
+        flex-direction: column; /* Stack buttons vertically in modals */
+        align-items: center;
+    }
+    .form-actions .btn-primary,
+    .form-actions .btn-secondary {
+        width: 100%;
+        margin-left: 0; /* Remove horizontal margin */
+        margin-bottom: 10px; /* Add vertical margin between stacked buttons */
+    }
+    .preview-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    .preview-actions button {
+        width: 100%;
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Smaller mobile devices */
+    .stats-cards {
+        grid-template-columns: 1fr; /* Stack stats cards vertically */
+    }
+    #guest-table th, #guest-table td {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.8125rem;
+    }
+}

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyplanner - Your Virtual Event Companion</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="poly logo.png" type="image/png">
+    
+</head>
+<body>
+    <!-- Navigation Bar -->
+     <marquee> Welcome to my website </marquee>
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo"><img src="poly logo.png" alt="polyplanner logo" class="logo-img">
+            <span class="brand-name">Polyplanner</span>
+           </a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#contact">Contact</a>
+                <button class="btn btn-primary" onclick="window.location.href='login.html'">Get Started</button>
+            </div>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Plan Your Perfect Event With Ease</h1>
+                <p><b>Polyplanner</b> simplifies event management with powerful tools for venue selection, guest tracking, task management, and budgeting - all in one place.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-secondary">Watch Demo <i class="fas fa-play"></i></button>
+                </div>
+            </div>
+
+            <!-- Video Modal -->
+<div id="demoModal" class="video-modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <video controls width="100%" id="demoVideo">
+      <source src="polyplanner vid..mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+            
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Event planning dashboard">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Powerful Features for Seamless Event Planning</h2>
+            <p class="section-subtitle">Everything you need to organize successful events</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Event Creation</h3>
+                    <p>Create events with detailed information including date, time, location, and description.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Guest Management</h3>
+                    <p>Track RSVPs, send invitations, and manage guest lists with ease.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>Task Assignment</h3>
+                    <p>Delegate tasks to team members and track progress in real-time.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Venue Selection</h3>
+                    <p>Find and compare venues with integrated maps and reviews.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3>Budget Tracking</h3>
+                    <p>Monitor expenses and stay on budget with our financial tools.</p>
+                </div>
+                
+               
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2>How Polyplanner Works</h2>
+           <p class="section-subtitle">
+  <a href="login.html">Get started in just a few simple steps</a>
+</p>
+
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Create Your Event</h3>
+                        <p>Set up your event with basic details like name, date, and expected attendees.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Customize Your Plan</h3>
+                        <p>Add tasks, select venues, create guest lists, and set your budget.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Collaborate With Team</h3>
+                        <p>Invite team members, assign tasks, and track progress together.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Execute Perfectly</h3>
+                        <p>With everything organized in one place, focus on making your event memorable.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2>What Our Users Say</h2>
+            <p class="section-subtitle">Trusted by event planners worldwide</p>
+            
+            <div class="testimonial-cards">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Polyplanner transformed how we organize corporate events. The task management system saved us countless hours of coordination."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="sis. linda 3.jpg" alt="Dr. Linda Binyiako">
+                        <div>
+                            <h4>Dr. Linda Binyiako</h4>
+                            <p>Event Manager, TechCorp</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"As a wedding planner, I rely on Polyplanner to keep everything on track. The guest management tools are exceptional."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="mr david .jpg" alt="Duku Kwaku David">
+                        <div>
+                            <h4>Duku Kwaku David</h4>
+                            <p>Wedding Planner</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The budget tracking feature helped us save 20% on our last conference. Highly recommended for any event organizer!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="mr oti.jpg" alt="Oti Konadu">
+                        <div>
+                            <h4>Oti Konadu</h4>
+                            <p>Conference Organizer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Transform Your Event Planning?</h2>
+            <p>Join thousands of event professionals who trust Polyplanner for seamless event management.</p>
+            <button class="btn btn-primary" >Get Started for Free</button>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2>Have Questions?</h2>
+                <p>We're here to help! Reach out to our team for any inquiries.</p>
+                
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="logo">Polyplanner</a>
+                    <p>Your virtual event companion for seamless planning and execution.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://x.com/home"><i class="fab fa-x"></i></a>
+                        <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin-in.com/"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Polyplanner. All rights reserved. Developed by Duku Polycarp Nkpadewie</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

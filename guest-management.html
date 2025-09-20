@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyplanner - Guest Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="guest-management.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="Index.html" class="logo">
+                <img src="poly logo.png" alt="Logo" class="logo-img">
+                <span class="brand-name">PolyPlanner</span>
+            </a>
+            <div class="nav-links">
+                <a href="Task-management.html">Task Management</a>
+                <a href="Venue-selection.html">Venue Selection</a>
+                <a href="budget.html">Budget Tracking</a>
+            </div>
+            <div class="user-profile">
+                <img src="profile-placeholder.png" alt="Profile">
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="page-header">
+            <h1>Guest Management</h1>
+            <div class="page-actions">
+                <button id="add-guest" class="btn-primary">
+                    <i class="fas fa-plus"></i> Add Guest
+                </button>
+            </div>
+        </div>
+
+        <div class="guest-management-container">
+            <section class="guest-overview">
+                <div class="stats-cards">
+                    <div class="stat-card">
+                        <div class="stat-value" id="total-guests">0</div>
+                        <div class="stat-label">Total Guests</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value attending" id="attending-guests">0</div>
+                        <div class="stat-label">Attending</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value not-attending" id="not-attending-guests">0</div>
+                        <div class="stat-label">Not Attending</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value pending" id="pending-guests">0</div>
+                        <div class="stat-label">Pending RSVP</div>
+                    </div>
+                </div>
+
+                <div class="guest-chart-container">
+                    <canvas id="guest-chart"></canvas>
+                </div>
+            </section>
+
+            <section class="guest-list-section">
+                <div class="section-header">
+                    <h2>Guest List</h2>
+                    <div class="list-actions">
+                        <div class="search-filter">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="guest-search" placeholder="Search guests...">
+                        </div>
+                        <select id="rsvp-filter">
+                            <option value="all">All RSVPs</option>
+                            <option value="attending">Attending</option>
+                            <option value="not_attending">Not Attending</option>
+                            <option value="pending">Pending</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="guest-table-container">
+                    <table id="guest-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>RSVP Status</th>
+                                <th>Invitation Sent</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination">
+                    <button id="prev-page" disabled><i class="fas fa-chevron-left"></i></button>
+                    <span id="page-info">Page 1 of 1</span>
+                    <button id="next-page" disabled><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </section>
+
+            <section class="invitation-section">
+                <div class="section-header">
+                    <h2>Invitation Management</h2>
+                    <div class="invitation-actions">
+                        <button id="send-invitations" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i> Send Invitations
+                        </button>
+                        <button id="preview-invitation" class="btn-secondary">
+                            <i class="fas fa-eye"></i> Preview
+                        </button>
+                    </div>
+                </div>
+
+                <div class="invitation-controls">
+                    <div class="invitation-template">
+                        <label for="template-select">Template:</label>
+                        <select id="template-select">
+                            <option value="formal">Formal Invitation</option>
+                            <option value="casual">Casual Invitation</option>
+                            <option value="corporate">Corporate Invitation</option>
+                            <option value="custom">Custom Design</option>
+                        </select>
+                    </div>
+
+                    <div class="invitation-editor">
+                        <textarea id="invitation-message" placeholder="Customize your invitation message..."></textarea>
+                        <div class="editor-tools">
+                            <button class="editor-btn" data-tag="guest_name"><i class="fas fa-user"></i> Guest Name</button>
+                            <button class="editor-btn" data-tag="event_name"><i class="fas fa-calendar"></i> Event Name</button>
+                            <button class="editor-btn" data-tag="event_date"><i class="fas fa-clock"></i> Event Date</button>
+                            <button class="editor-btn" data-tag="event_location"><i class="fas fa-map-marker-alt"></i> Location</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="guest-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title">Add New Guest</h2>
+            <form id="guest-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="guest-first-name">First Name*</label>
+                        <input type="text" id="guest-first-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="guest-last-name">Last Name*</label>
+                        <input type="text" id="guest-last-name" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="guest-email">Email Address*</label>
+                    <input type="email" id="guest-email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="guest-phone">Phone Number</label>
+                    <input type="tel" id="guest-phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="guest-company">Company/Organization</label>
+                    <input type="text" id="guest-company">
+                </div>
+
+                <div class="form-group">
+                    <label for="guest-notes">Notes</label>
+                    <textarea id="guest-notes" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="guest-status">RSVP Status</label>
+                    <select id="guest-status">
+                        <option value="pending">Pending</option>
+                        <option value="attending">Attending</option>
+                        <option value="not_attending">Not Attending</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancel-guest">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Guest</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="invitation-preview-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="invitation-preview-content">
+                </div>
+            <div class="preview-actions">
+                <button id="send-test-invitation" class="btn-secondary">
+                    <i class="fas fa-envelope"></i> Send Test
+                </button>
+                <button id="confirm-send-invitations" class="btn-primary">
+                    <i class="fas fa-paper-plane"></i> Send to All Guests
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="guest-management.js"></script>
+    <script>
+        // Get modal elements for guest management specific modals
+        const guestModal = document.getElementById('guest-modal');
+        const previewModal = document.getElementById('invitation-preview-modal'); // Corrected ID
+        const closeButtons = document.querySelectorAll('.modal .close-modal'); // Get all close buttons in modals
+        const addGuestMainBtn = document.getElementById('add-guest'); // The 'Add Guest' button in page header
+        const cancelGuestBtn = document.getElementById('cancel-guest');
+
+        // Function to close all modals (generic)
+        function closeAllModals() {
+            guestModal.style.display = 'none';
+            if (previewModal) previewModal.style.display = 'none'; // Check if preview modal exists
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+
+        // Open Add Guest modal
+        if (addGuestMainBtn) {
+            addGuestMainBtn.addEventListener('click', () => {
+                guestModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // Disable scrolling
+            });
+        }
+
+        // Close modals using the 'X' button
+        closeButtons.forEach(btn => {
+            btn.addEventListener('click', closeAllModals);
+        });
+
+        // Close Add Guest modal via 'Cancel' button
+        if (cancelGuestBtn) {
+            cancelGuestBtn.addEventListener('click', closeAllModals);
+        }
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function (e) {
+            if (e.target === guestModal || e.target === previewModal) {
+                closeAllModals();
+            }
+        });
+
+        // Event listener for Preview Invitation button (assuming you'll define showInvitationPreview later)
+        const previewInvitationBtn = document.getElementById('preview-invitation');
+        if (previewInvitationBtn) {
+            previewInvitationBtn.addEventListener('click', () => {
+                previewModal.style.display = 'flex'; // Show the preview modal
+                document.body.style.overflow = 'hidden'; // Disable scrolling
+                // You will need to add logic here to populate .invitation-preview-content
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventPro - Budget Tracking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="budget.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">   
+    <link rel="icon" href="poly logo.png" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+
+</head>
+<body>
+    <!-- Navigation Bar -->
+<nav class="navbar">
+    <div class="container">
+        <!-- Logo and Brand Name -->
+        <a href="Index.html" class="logo">
+            <img src="poly logo.png" alt="Logo" class="logo-img">
+            <span class="brand-name">PolyPlanner</span>
+        </a>
+
+        <!-- Navigation Links -->
+                <div class="nav-links">
+            <a href="Getstarted.html">Home</a>
+            <a href="Venue-selection.html">Venue-Selection</a>
+            <a href="guest-management.html">Guest-Management</a>
+            <a href="budget.html">Budget-Tracking</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="budget-header">
+            <h2>Event Budget Tracker</h2>
+            <div class="budget-summary">
+                <div class="summary-card">
+                    <h3>Total Budget</h3>
+                    <p class="amount">GHC 10,000.00</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Amount Spent</h3>
+                    <p class="amount spent">GHC 4,250.00</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Remaining</h3>
+                    <p class="amount remaining">GHC 750.00</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Percentage Used</h3>
+                    <p class="amount percentage">42.5%</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="budget-content">
+            <div class="budget-controls">
+                <button class="btn-primary" id="add-expense-btn">
+                    <i class="fas fa-plus"></i> Add Expense
+                </button>
+                <div class="budget-filter">
+                    <select id="category-filter">
+                        <option value="all">All Categories</option>
+                        <option value="venue">Venue</option>
+                        <option value="catering">Catering</option>
+                        <option value="decorations">Decorations</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="photography">Photography</option>
+                        <option value="miscellaneous">Miscellaneous</option>
+                    </select>
+                    <input type="text" id="search-expenses" placeholder="Search expenses...">
+                </div>
+            </div>
+
+            <div class="expense-table-container">
+                <table class="expense-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Payment Method</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2023-11-15</td>
+                            <td><span class="category-badge venue">Venue</span></td>
+                            <td>Grand Plaza Hotel Deposit</td>
+                            <td>GHC 500.00</td>
+                            <td>Credit Card</td>
+                            <td><span class="status-badge paid">Paid</span></td>
+                            <td>
+                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2023-11-20</td>
+                            <td><span class="category-badge catering">Catering</span></td>
+                            <td>Food & Beverage Package</td>
+                            <td>GHC 2,000.00</td>
+                            <td>Bank Transfer</td>
+                            <td><span class="status-badge pending">Pending</span></td>
+                            <td>
+                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2023-11-25</td>
+                            <td><span class="category-badge decorations">Decorations</span></td>
+                            <td>Floral Arrangements</td>
+                            <td>GHC 750.00</td>
+                            <td>Credit Card</td>
+                            <td><span class="status-badge paid">Paid</span></td>
+                            <td>
+                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="budget-visualization">
+                <div class="chart-container">
+                    <h3>Expense Breakdown</h3>
+                    <div class="chart" id="expense-chart">
+                        <!-- Chart will be rendered here -->
+                        <div class="chart-legend">
+                            <div><span class="legend-color venue"></span> Venue</div>
+                            <div><span class="legend-color catering"></span> Catering</div>
+                            <div><span class="legend-color decorations"></span> Decorations</div>
+                            <div><span class="legend-color entertainment"></span> Entertainment</div>
+                            <div><span class="legend-color photography"></span> Photography</div>
+                            <div><span class="legend-color miscellaneous"></span> Miscellaneous</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="recent-activity">
+                    <h3>Recent Activity</h3>
+                    <ul class="activity-list">
+                        <li>
+                            <i class="fas fa-dollar-sign activity-icon payment"></i>
+                            <div class="activity-details">
+                                <p>Paid GHC 750.00 for Floral Arrangements</p>
+                                <small>Today, 10:45 AM</small>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-edit activity-icon update"></i>
+                            <div class="activity-details">
+                                <p>Updated catering budget to $2,000.00</p>
+                                <small>Yesterday, 3:22 PM</small>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-plus activity-icon add"></i>
+                            <div class="activity-details">
+                                <p>Added new expense: DJ Services - $1,200.00</p>
+                                <small>Nov 28, 2023, 9:15 AM</small>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Expense Modal -->
+    <div class="modal" id="expense-modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Add New Expense</h2>
+            <form id="expense-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="expense-date">Date</label>
+                        <input type="date" id="expense-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expense-category">Category</label>
+                        <select id="expense-category" required>
+                            <option value="">Select Category</option>
+                            <option value="venue">Venue</option>
+                            <option value="catering">Catering</option>
+                            <option value="decorations">Decorations</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="photography">Photography</option>
+                            <option value="miscellaneous">Miscellaneous</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="expense-description">Description</label>
+                    <input type="text" id="expense-description" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="expense-amount">Amount (GHC)</label>
+                        <input type="number" id="expense-amount" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expense-payment">Payment Method</label>
+                        <select id="expense-payment" required>
+                            <option value="">Select Method</option>
+                            <option value="cash">Cash</option>
+                            <option value="credit-card">Credit Card</option>
+                            <option value="bank-transfer">Bank Transfer</option>
+                            <option value="check">Check</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="expense-status">Status</label>
+                    <select id="expense-status" required>
+                        <option value="pending">Pending</option>
+                        <option value="paid">Paid</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="expense-notes">Notes</label>
+                    <textarea id="expense-notes" rows="3"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancel-expense">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Expense</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="budget.js"></script>
+</body>
+</html>
